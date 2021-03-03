@@ -11,7 +11,7 @@
   z-index: 2;
   perspective: 1000px;
   transform-style: preserve-3d;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
 
   @media only screen and (max-width: 900px) {
     top: 50px;
@@ -206,6 +206,138 @@
           background: #f7e1e1;
           background: linear-gradient(to right, #fff, #f7e1e1);
         }
+      }
+    }
+  }
+
+  &.sidebarMinimized {
+    .navLinks .navLink {
+      &[data-target="mens"] {
+        &:hover {
+          svg {
+            filter: drop-shadow(5px 10px 5px #ffefba);
+          }
+        }
+      }
+
+      &[data-target="women"] {
+        &:hover {
+          svg {
+            filter: drop-shadow(5px 10px 5px #ffc4e3);
+          }
+        }
+      }
+
+      &[data-target="jewellery"] {
+        &:hover {
+          svg {
+            filter: drop-shadow(5px 10px 5px #d0f5b1);
+          }
+        }
+      }
+
+      &[data-target="electronics"] {
+        &:hover {
+          svg {
+            filter: drop-shadow(5px 10px 5px #f7e1e1);
+          }
+        }
+      }
+    }
+
+    // https://codepen.io/tutsplus/pen/WROvdG
+
+    [data-tooltip] {
+      position: relative;
+
+      &::before, &::after {
+        text-transform: none;
+        font-size: .9em;
+        line-height: 1;
+        user-select: none;
+        pointer-events: none;
+        position: absolute;
+        display: none;
+        opacity: 0;
+      }
+
+      &::before {
+        content: '';
+        border: 5px solid transparent;
+        z-index: 1001;
+      }
+
+      &::after {
+        content: attr(data-tooltip);
+        font-family: inherit !important;
+        text-align: center;
+        min-width: 3em;
+        max-width: 21em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 8px 10px;
+        border-radius: 5px;
+        box-shadow: 0 1em 2em -0.5em rgba(0, 0, 0, 0.35);
+        background: #333;
+        color: #fff;
+        z-index: 1000;
+      }
+
+      &:hover {
+        &::before, &::after {
+          display: block;
+        }
+      }
+    }
+
+    [data-tooltip=''] {
+      &::before, &::after {
+        display: none !important;
+      }
+    }
+
+    [data-tooltip] {
+      &[data-tooltip-direction^="right"] {
+        &::before {
+          top: 50%;
+          border-left-width: 0;
+          border-right-color: #333;
+          right: calc(0em - 5px);
+          transform: translate(0.5em, -50%);
+        }
+
+        &::after {
+          top: 50%;
+          left: calc(100% + 5px);
+          transform: translate(0.5em, -50%);
+        }
+      }
+
+      &:not([data-tooltip-direction]):hover {
+        &::before, &::after {
+          animation: tooltips-vert 300ms ease-out forwards;
+        }
+      }
+
+      &[data-tooltip-direction^="right"]:hover {
+        &::before, &::after {
+          animation: tooltips-horz 300ms ease-out forwards;
+        }
+      }
+    }
+
+    @keyframes tooltips-vert {
+      to {
+        opacity: .9;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    @keyframes tooltips-horz {
+      to {
+        opacity: .9;
+        transform: translate(0, -50%);
       }
     }
   }
