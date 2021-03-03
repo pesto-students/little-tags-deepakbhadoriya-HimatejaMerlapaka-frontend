@@ -35,6 +35,10 @@ const Navigation = () => {
   const [languageDropdown, toggleLanguageDropdown] = useState(false);
   const [showSearchBar, toggleSearchBar] = useState(false);
 
+  const updateLocale = (language) => {
+    dispatch(languageAction.changeLanguage(language));
+  };
+
   useEffect(() => {
     // console.log("Mounted");
     return () => {
@@ -56,6 +60,7 @@ const Navigation = () => {
             type="text"
             placeholder={intl.formatMessage({ id: 'search' })}
             className={styles.input}
+            lang={locale}
           />
         </label>
         <button aria-label="Search" className={styles.searchButton}>
@@ -86,13 +91,13 @@ const Navigation = () => {
             onClick={() => toggleLanguageDropdown(!languageDropdown)}
           >
             <img src={flags[locale]} />
-            <span className={styles.currentLocale}>{flagLanguage[locale]}</span>
+            <span lang={locale} className={styles.currentLocale}>{flagLanguage[locale]}</span>
           </button>
           <ul className={styles.languagesListDropdown}>
             <li>
               <button
                 className={styles.languageSwitcherButton}
-                onClick={() => dispatch(languageAction.changeLanguage('en'))}
+                onClick={() => updateLocale('en')}
               >
                 <img src={flags.en} className={styles.flag} />
                 <span className={styles.currentLocale}>English</span>
@@ -101,16 +106,16 @@ const Navigation = () => {
             <li>
               <button
                 className={styles.languageSwitcherButton}
-                onClick={() => dispatch(languageAction.changeLanguage('hi'))}
+                onClick={() => updateLocale('hi')}
               >
                 <img src={flags.hi} className={styles.flag} />
-                <span>हिन्दी</span>
+                <span lang="hi">हिन्दी</span>
               </button>
             </li>
             <li>
               <button
                 className={styles.languageSwitcherButton}
-                onClick={() => dispatch(languageAction.changeLanguage('es'))}
+                onClick={() => updateLocale('es')}
               >
                 <img src={flags.es} className={styles.flag} />
                 <span>Español</span>

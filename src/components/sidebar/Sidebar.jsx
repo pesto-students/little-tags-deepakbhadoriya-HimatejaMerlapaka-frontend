@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import MensClothingIcon from '../../assets/icons/sidebar/mensClothingIcon';
@@ -14,6 +15,7 @@ import { $id } from '../../utils/domUtils';
 import LogInIcon from '../../assets/icons/login/component';
 
 const Sidebar = () => {
+  const locale = useSelector((state) => state.language.locale);
   const [sidebarVisible, toggleSidebar] = useState(() => window.innerWidth >= 900);
   const intl = useIntl();
 
@@ -41,9 +43,8 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`${styles.sidebar} ${
-        sidebarVisible ? styles.sidebarFull : styles.sidebarMinimized
-      }`}
+      className={`${styles.sidebar} ${sidebarVisible ? styles.sidebarFull : styles.sidebarMinimized
+        }`}
     >
       <button
         aria-label="Sidebar toggle"
@@ -55,30 +56,30 @@ const Sidebar = () => {
       <div className={styles.navLinks}>
         <Link to="/men" className={styles.navLink} data-target="mens">
           <MensClothingIcon />
-          <span className={styles.linkText}>
+          <span className={styles.linkText} lang={locale}>
             <FormattedMessage id="mensClothing" />
           </span>
         </Link>
         <Link to="/women" className={styles.navLink} data-target="women">
           <WomenClothingIcon />
-          <span className={styles.linkText}>
+          <span className={styles.linkText} lang={locale}>
             <FormattedMessage id="womenClothing" />
           </span>
         </Link>
         <Link to="/jewellery" className={styles.navLink} data-target="jewellery">
           <JewelleryIcon />
-          <span className={styles.linkText}>
+          <span className={styles.linkText} lang={locale}>
             <FormattedMessage id="jewellery" />
           </span>
         </Link>
         <Link to="/electronics" className={styles.navLink} data-target="electronics">
           <ElectronicsIcon />
-          <span className={styles.linkText}>
+          <span className={styles.linkText} lang={locale}>
             <FormattedMessage id="electronics" />
           </span>
         </Link>
       </div>
-      <Link to="/referrals" className={styles.referralCard}>
+      <Link to="/referrals" className={styles.referralCard} lang={locale}>
         <p>
           <FormattedMessage id="referral_message" />
         </p>
@@ -86,7 +87,7 @@ const Sidebar = () => {
       <div className={styles.bottomLinks}>
         <button aria-label="Logout" className={`${styles.logout} ${styles.bottomLink}`}>
           <LogInIcon />
-          <span className={styles.linkText}>
+          <span className={styles.linkText} lang={locale}>
             <FormattedMessage id="login" />
           </span>
         </button>
@@ -100,7 +101,7 @@ const Sidebar = () => {
         </button> */}
         <Link to="/help" className={`${styles.logout} ${styles.bottomLink}`}>
           <HelpIcon />
-          <span className={styles.linkText}>
+          <span className={styles.linkText} lang={locale}>
             <FormattedMessage id="help_center" />
           </span>
         </Link>
