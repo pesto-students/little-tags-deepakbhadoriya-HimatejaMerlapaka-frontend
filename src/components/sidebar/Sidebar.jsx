@@ -14,12 +14,11 @@ import ArrowLeftIcon from '../../assets/icons/arrows/arrowLeft';
 import { $id } from '../../utils/domUtils';
 import LogInIcon from '../../assets/icons/login/component';
 
-const Sidebar = () => {
+const Sidebar = ({ openLogin }) => {
   const intl = useIntl();
   const locale = useSelector((state) => state.language.locale);
 
   const [sidebarVisible, toggleSidebar] = useState(() => window.innerWidth >= 900);
-  const [loginVisible, toggleLoginVisible] = useState(false);
 
   useEffect(() => {
     const rootDiv = $id('root');
@@ -117,10 +116,11 @@ const Sidebar = () => {
       <div className={styles.bottomLinks}>
         <button
           aria-label="Login"
-          className={`${styles.logout} ${styles.bottomLink}`}
+          className={`${styles.loginButton} ${styles.bottomLink}`}
           data-tooltip={intl.formatMessage({ id: 'login' })}
           data-tooltip-direction="right"
           lang={locale}
+          onClick={openLogin}
         >
           <LogInIcon />
           <span className={styles.linkText}>
