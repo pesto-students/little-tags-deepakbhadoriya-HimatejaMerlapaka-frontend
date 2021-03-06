@@ -2,7 +2,15 @@
 /* stylelint-disable no-duplicate-selectors */
 
 .header {
-  path {
-    fill: #007bd5;
+  .T, 
+  .R,
+  .E,
+  .N,
+  .D {
+    fill: #292C49;
+  }
+
+  .Z {
+    fill: #FF007A
   }
 }

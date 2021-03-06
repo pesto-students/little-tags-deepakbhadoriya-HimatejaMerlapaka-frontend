@@ -50,7 +50,7 @@ const Navigation = () => {
     <header className={styles.header}>
       <Link to="/" className={styles.pageBranding}>
         <Logo container="header" />
-        <span className={styles.logoTitle}>Little Tags</span>
+        <span className={styles.logoTitle}>TrendZ</span>
       </Link>
       <div className={`${styles.searchWrap} ${showSearchBar ? styles.showSearchBar : ''}`}>
         <label htmlFor="search" className={styles.searchLabel}>
