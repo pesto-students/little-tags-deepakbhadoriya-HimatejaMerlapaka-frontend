@@ -1,3 +1,5 @@
+@import "../../styles/mixins";
+
 .loginModal {
   position: fixed;
   top: 0;
@@ -12,22 +14,23 @@
 
   .loginContainer {
     position: relative;
-    width: 30em;
-    height: 35em;
+    width: 35em;
+    max-height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
     background: #fff;
     border-radius: 10px;
-    overflow: hidden;
     transition: 0.3s all ease-out;
 
     @media screen and (max-width: 600px) {
       width: calc(100% - 30px);
-      height: calc(100% - 30px);
+      max-height: calc(100% - 30px);
     }
 
     .header {
-      position: absolute;
+      position: sticky;
       top: 0;
-      left: 0;
+      z-index: 1;
       width: 100%;
       height: 60px;
       display: flex;
@@ -69,8 +72,8 @@
     .content {
       display: flex;
       flex-direction: column;
-      margin-top: 60px;
       padding: 30px;
+      padding-bottom: 100px;
 
       .heading {
         font-size: 1.5em;
@@ -81,6 +84,7 @@
       .subHeading {
         font-size: 0.9em;
         margin-bottom: 20px;
+        line-height: 1.5;
       }
 
       .ssoContainer {
@@ -93,22 +97,59 @@
         .LoginWithFacebookButton {
           flex: 1;
           display: flex;
-          padding: 10px;
           justify-content: center;
           align-items: center;
+          padding: 15px;
+          font-size: 1em;
           background: #fff;
           border: 0;
-          box-shadow: 0 0 0 1px #000;
-          border-radius: 5px;
+          border-radius: 50px;
+          box-shadow: inset 0 0 0 1px #e3e3e3, 
+                      0 0 0 1px rgba(9, 30, 66, 0.08), 
+                      0 2px 4px 1px rgba(9, 30, 66, 0.08);
 
-          img, 
-          span {
-            flex: 1;
+          .buttonContent {
+            width: 100%;
+            img {
+              vertical-align: middle;
+              max-width: 18px;
+              margin-right: 10px;
+            }
+          }          
+        }
+
+        @media screen and (max-width: 480px) {
+          flex-direction: column;
+          .LoginWithGoogleButton, 
+          .LoginWithFacebookButton {
+            padding: 5px;
           }
 
-          img {
-            max-width: 25px;
-          }
+        }
+      }
+
+      .legend {
+        position: relative;
+        text-align: center;
+        width: 100%;
+        padding: 20px;
+        margin-top: 15px;
+        font-size: 12px;
+
+        span {
+          background-color: #fff;
+          padding: 0 25px;
+        }
+
+        &::after {
+          content: "";
+
+          @include transform-center;
+
+          width: 100%;
+          height: 2px;
+          z-index: -1;
+          background: #f1f1f1;
         }
       }
 
@@ -117,7 +158,7 @@
         flex-direction: column;
         flex-wrap: wrap;
         margin-top: 25px;
-        gap: 15px;
+        gap: 20px;
 
         .fieldSet {
           display: flex;
@@ -184,20 +225,37 @@
             }
 
             .logInButton {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              cursor: pointer;
               padding: 5px 15px;
               background: #fff;
               border: 0;
               box-shadow: 0 0 0 1px #ababab;
               border-radius: 30px;
-              width: 80px;
+              width: 100px;
               height: 40px;
               text-align: left;
+              
+              svg {
+                width: 15px;
+                transform: translateX(2px);
+                transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+              }
 
               &:focus, 
               &:hover {
                 color: #fff;
                 background: #007bff;
                 box-shadow: none;
+
+                svg {
+                  path {
+                    stroke: #fff;
+                  }
+                  transform: translateX(5px);
+                }
               }
             }
           }
@@ -206,9 +264,6 @@
     }
 
     .bottomFixed {
-      position: absolute;
-      bottom: 0;
-      left: 0;
       width: 100%;
       font-size: 12px;
       box-shadow: inset 0px 1px 0 0 #e8e8e8;

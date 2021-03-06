@@ -5,9 +5,8 @@
   width: 250px;
   height: calc(100% - 60px);
   padding: 15px;
-  background: rgba(255, 255, 255, 0.6);
+  background: #fff;
   box-shadow: inset -1px 0 0 0 #dcdcdc;
-  backdrop-filter: blur(5px) contrast(3);
   z-index: 2;
   perspective: 1000px;
   transform-style: preserve-3d;
@@ -15,6 +14,7 @@
 
   @media only screen and (max-width: 900px) {
     top: 50px;
+    height: calc(100% - 50px);
   }
 
   * {

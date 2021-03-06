@@ -146,15 +146,19 @@
           align-items: center;
           justify-content: center;
         }
+
+        & + .rightNavigation {
+          display: none;
+        }
       }
     }
   }
 
   .rightNavigation {
-    display: inline-flex;
+    display: flex;
 
     .navItem {
-      display: inline-flex;
+      display: flex;
       background: none;
       border: none;
       cursor: pointer;
@@ -225,6 +229,14 @@
     
     .languageSwitcher {
       position: relative;
+      .navItem {
+        display: block;
+        
+        img, 
+        .currentLocale {
+          vertical-align: middle;
+        }
+      }
 
       .languagesListDropdown {
         position: absolute;
@@ -254,6 +266,10 @@
           .flag {
             max-width: 20px;
             margin-right: 10px;
+          }
+
+          span:lang(hi) {
+            font-weight: normal !important;
           }
 
           &:hover {

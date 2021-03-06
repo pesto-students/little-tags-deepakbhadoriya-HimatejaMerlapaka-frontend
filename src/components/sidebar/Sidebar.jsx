@@ -29,10 +29,6 @@ const Sidebar = ({ openLogin }) => {
     }
   }, [sidebarVisible]);
 
-  useEffect(() => {
-    console.log("Mounted");
-  }, []);
-
   const updateSideBarVisibility = (event) => {
     toggleSidebar(!sidebarVisible);
   };
